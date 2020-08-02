@@ -29,7 +29,7 @@ print()
 
 #Letting sklearn predict who will survived based on the dataframe:
 y_pred = model.predict(X)
-print(y_pred)
+print(y_pred) #or, with walrus: print(y_pred := model.predict(X))
 
 #Checking model's predictions
 y_pred = model.predict(X)
