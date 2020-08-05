@@ -2,8 +2,8 @@
 
 import numpy as np
 import pandas as pd
-from _decimal import DecimalException
 from sklearn.linear_model import LogisticRegression as lr
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
 pd.options.display.max_columns = 99
 
@@ -47,3 +47,19 @@ print()
 # dumb way: print(str(round(((y_pred == y).sum() / y.shape[0]) * 100, 3)) + '% accuracy')
 #clever way:
 print(str(round(model.score(X, y) * 100, 3)) + '% accuracy')
+print()
+#Other measuers of model performance
+print('Accuracy: ', accuracy_score(y, y_pred))
+print('Precision : ', precision_score(y, y_pred))
+print('Recall: ', recall_score(y, y_pred))
+print('F1: ', f1_score(y, y_pred))
+print()
+print('Confusion matrix (first col = predicted negatives; second col = predicted positives);\
+\nfirst row = actual negatives; second row = actual positives \n')
+print(confusion_matrix(y, y_pred))
+print()
+print('Precision = 239/309 = ', 239/309)
+print('Recall = 239/342 = ', 239/342)
+print('F1 = (harmonic mean) = 2 * (Precision * Recall) / (Precision + Recall) = \
+', 2 * ((239/309)*(239/342))/((239/309)+(239/342)))
+print()

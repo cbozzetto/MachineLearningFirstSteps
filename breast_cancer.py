@@ -65,5 +65,5 @@ print('This dataset contains ' + str((ctarg == 0).sum()) + ' Malignant bodies an
 ' + str((ctarg == 1).sum()) + ' benign bodies, for a total of \
 ' + str((ctarg == 1).sum() + (ctarg == 0).sum()) + ' observations.')
 print()
-print('Accuracy: ' + str(round(model.score(X,y), 3) * 100) + '%')
+print('Accuracy: ' + str(round(model.score(X, y), 3) * 100) + '%')
 
