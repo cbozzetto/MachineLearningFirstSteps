@@ -30,12 +30,16 @@ print()
 
 model = lr()
 model.fit(X_train, y_train)
-
-print('Predictions: \n', y_pred := model.predict(X_test))
+#calculating the specific probability of survival for each prediction
+y_pred = model.predict_proba(X_test)[:, 1]
+#setting a specific threshold (the default is 50)
+y_pred_tresh = model.predict_proba(X_test)[:, 1] > 0.60
+print('Prediction of survival probabilities: \n', y_pred)
 print()
-print('Accuracy: ', accuracy_score(y_test, y_pred))
-print('Precision : ', precision_score(y_test, y_pred))
-print('Recall: ', recall_score(y_test, y_pred))
-print('F1: ', f1_score(y_test, y_pred))
+print('Prediction using 60% threshold: \n', y_pred_tresh)
+print('Accuracy with 60% threshold: ', accuracy_score(y_test, y_pred_tresh))
+print('Precision with 60% threshold: ', precision_score(y_test, y_pred_tresh))
+print('Recall: with 60% threshold', recall_score(y_test, y_pred_tresh))
+print('F1: with 60% threshold', f1_score(y_test, y_pred_tresh))
 print()
 
