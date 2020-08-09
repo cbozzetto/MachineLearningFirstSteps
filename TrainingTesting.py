@@ -1,8 +1,8 @@
 import pandas as pd
 from sklearn.linear_model import LogisticRegression as lr
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score
-
+from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score, roc_curve, roc_auc_score
+import matplotlib.pyplot as pl
 pd.options.display.max_columns = 99
 
 df = pd.read_csv('https://sololearn.com/uploads/files/titanic.csv')
@@ -42,4 +42,21 @@ print('Precision with 60% threshold: ', precision_score(y_test, y_pred_tresh))
 print('Recall: with 60% threshold', recall_score(y_test, y_pred_tresh))
 print('F1: with 60% threshold', f1_score(y_test, y_pred_tresh))
 print()
+
+#still using the 60% threshold, computing the ROC Curve
+fpr, tpr, thresholds = roc_curve(y_test, y_pred)
+
+#printing the area under the roc curve. The closer to 1, the better.
+print('AUC = ', roc_auc_score(y_test, y_pred))
+
+#plotting the ROC Curve: the closer it is to the upper-left corner, the better.
+#it mustn't go under the diagonal line.
+pl.plot(fpr, tpr)
+pl.plot([0, 1], [0, 1], linestyle = '--')
+pl.xlim([0.0, 1.0])
+pl.ylim([0.0, 1.0])
+pl.xlabel('1 - specificity')
+pl.ylabel('sensitivity')
+pl.show()
+
 
